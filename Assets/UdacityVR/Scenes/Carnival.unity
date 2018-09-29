@@ -1317,7 +1317,7 @@ MonoBehaviour:
   PlinkoCoinPrefab: {fileID: 114797982807831004, guid: 01d47a81017c3784582dc60a35393d71,
     type: 2}
   PlinkoCoinOrigin: {fileID: 2055501090}
-  OscillationDistance: 0
+  OscillationDistance: 0.7
   OscillationSpeed: 2
   BellDing: {fileID: 1009904274}
   Thud: {fileID: 1359439102}
