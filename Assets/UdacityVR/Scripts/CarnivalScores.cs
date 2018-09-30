@@ -5,10 +5,18 @@ using TMPro;
 public class CarnivalScores : MonoBehaviour {
 
 	[SerializeField]
-	private int TeddyBearPointsMin = 2000;
+	private int PlinkoPointsWin = 2000;
+	[SerializeField]
+	private int WheelPointsWin = 2000;
+	[SerializeField]
+	private int CoinPointsWin = 2000;
 
 	[SerializeField]
-	private GameObject TeddyBear;
+	private GameObject PlinkoPrize;
+	[SerializeField]
+	private GameObject WheelPrize;
+	[SerializeField]
+	private GameObject CoinPrize;
 
 	[SerializeField]
 	private TextMeshPro plinkoScore;
@@ -27,7 +35,9 @@ public class CarnivalScores : MonoBehaviour {
 		if (Instance == null)
 			Instance = this;
 
-		TeddyBear.SetActive(false);
+		PlinkoPrize.SetActive(false);
+		WheelPrize.SetActive(false);
+		CoinPrize.SetActive(false);
 	}
 
 	void OnDestroy() {
@@ -41,8 +51,17 @@ public class CarnivalScores : MonoBehaviour {
 		wheelScore.text = "Wheel: " + wheelPoints.ToString("0000");
 		coinScore.text = "Coins: " + coinPoints.ToString("0000");
 
-		if (plinkoPoints + wheelPoints + coinPoints >= TeddyBearPointsMin) {
-			TeddyBear.SetActive(true);
+		// Verify if the win plinko
+		if (plinkoPoints >= PlinkoPointsWin) {
+			PlinkoPrize.SetActive(true);
+		}
+
+		if (wheelPoints >= WheelPointsWin) {
+			WheelPrize.SetActive(true);
+		}
+
+		if (coinPoints >= CoinPointsWin) {
+			CoinPrize.SetActive(true);
 		}
 	}
 

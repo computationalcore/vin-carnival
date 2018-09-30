@@ -163,7 +163,7 @@ PlayerSettings:
     Android: com.udacity.udacitycarnival
     Standalone: com.Company.ProductName
     Tizen: com.udacity.p1
-    iOS: com.udacity.udacitycarnival
+    iOS: com.computationalcore.vincarnival
     tvOS: com.udacity.p1
   buildNumber:
     iOS: 0
