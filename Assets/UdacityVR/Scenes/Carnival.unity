@@ -3902,7 +3902,7 @@ GameObject:
   m_Component:
   - component: {fileID: 456476315}
   m_Layer: 0
-  m_Name: Prizzes
+  m_Name: Prizes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5849,15 +5849,16 @@ MonoBehaviour:
 
     Circus'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: f76ef802b8b940c46a31f9027f2b0158, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 250a1a103b3b4914c9707e6a423446d6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 83f346c5d9b514834879c78178e6c1e4, type: 2}
+  m_sharedMaterial: {fileID: 21615310237811700, guid: 83f346c5d9b514834879c78178e6c1e4,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294309365
-  m_fontColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_fontColorGradient:
     topLeft: {r: 0, g: 0.83448267, b: 1, a: 1}
@@ -5874,8 +5875,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 3.8
-  m_fontSizeBase: 3.8
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5892,7 +5893,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 0
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
@@ -5960,7 +5961,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 250a1a103b3b4914c9707e6a423446d6, type: 2}
+  - {fileID: 21615310237811700, guid: 83f346c5d9b514834879c78178e6c1e4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -5995,7 +5996,7 @@ RectTransform:
   m_GameObject: {fileID: 811259996}
   m_LocalRotation: {x: 0.49759474, y: 0.4987898, z: 0.5017072, w: -0.50189453}
   m_LocalPosition: {x: 0, y: 0, z: 0.02}
-  m_LocalScale: {x: 8.349933, y: 8.3, z: 51.88266}
+  m_LocalScale: {x: 1, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 882443709}
   m_RootOrder: 0
@@ -6003,7 +6004,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.08, y: -1.6}
-  m_SizeDelta: {x: 3, y: 0.5}
+  m_SizeDelta: {x: 8, y: 8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!4 &812361800 stripped
 Transform:
@@ -12784,7 +12785,7 @@ Prefab:
     - target: {fileID: 2300000, guid: 584a8ef4749c89745b7ae07f3ba7617f, type: 2}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 6e1d36c4bbd37d54f9ea183e4f5fd656, type: 2}
+      objectReference: {fileID: 2100000, guid: e17bc7b3659294e689878555644d2b3c, type: 2}
     - target: {fileID: 2300000, guid: 584a8ef4749c89745b7ae07f3ba7617f, type: 2}
       propertyPath: m_LightProbeUsage
       value: 1
