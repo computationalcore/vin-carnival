@@ -17,6 +17,22 @@ public class CarnivalScores : MonoBehaviour {
 	private GameObject WheelPrize;
 	[SerializeField]
 	private GameObject CoinPrize;
+	[SerializeField]
+	private GameObject CoinPile;
+
+	[SerializeField]
+	private GameObject MainCamera;
+	[SerializeField]
+	private GameObject posCam1;
+	[SerializeField]
+	private GameObject posCam2;
+	[SerializeField]
+	private GameObject MainMenu;
+
+	[SerializeField]
+	private GameObject MainMenuMusic;
+	[SerializeField]
+	private GameObject GameMusic;
 
 	[SerializeField]
 	private TextMeshPro plinkoScore;
@@ -31,9 +47,22 @@ public class CarnivalScores : MonoBehaviour {
 	private int wheelPoints;
 	private int coinPoints;
 
+	// starting value for the Lerp
+	private float t = 0.0f;
+	private float timeToMove = 1.0f;
+	private Boolean isCameraAnimationRunning = false;
+
+	// Possibles game states
+	private enum gameState {MainMenu, Playing, GameOver};
+	// Start Game state
+	private gameState currentGameState = gameState.MainMenu;
+
 	void Awake() {
 		if (Instance == null)
 			Instance = this;
+
+		GameMusic.SetActive (false);
+		
 
 		PlinkoPrize.SetActive(false);
 		WheelPrize.SetActive(false);
@@ -62,7 +91,53 @@ public class CarnivalScores : MonoBehaviour {
 
 		if (coinPoints >= CoinPointsWin) {
 			CoinPrize.SetActive(true);
+			// Hide the coin pile to the prize fall correctly
+			CoinPile.SetActive(false);
 		}
+	}
+
+	void LateUpdate() {
+		ReOrientCamera ();
+	}
+
+	public void ReOrientCamera (){
+		if (isCameraAnimationRunning) {
+			if (currentGameState == gameState.Playing) {
+				MainCamera.transform.position = Vector3.Lerp (posCam1.transform.position, posCam2.transform.position, t);
+				MainCamera.transform.rotation = Quaternion.Euler (
+					Mathf.LerpAngle (posCam1.transform.eulerAngles.x, posCam2.transform.eulerAngles.x, t),
+					Mathf.LerpAngle (posCam1.transform.eulerAngles.y, posCam2.transform.eulerAngles.y, t),
+					Mathf.LerpAngle (posCam1.transform.eulerAngles.z, posCam2.transform.eulerAngles.z, t)
+				);
+			} else {
+				MainCamera.transform.position = Vector3.Lerp (posCam2.transform.position, posCam1.transform.position, t);
+				MainCamera.transform.rotation = Quaternion.Euler (
+					Mathf.LerpAngle (posCam2.transform.eulerAngles.x, posCam1.transform.eulerAngles.x, t),
+					Mathf.LerpAngle (posCam2.transform.eulerAngles.y, posCam1.transform.eulerAngles.y, t),
+					Mathf.LerpAngle (posCam2.transform.eulerAngles.z, posCam1.transform.eulerAngles.z, t)
+				);
+			}
+			// now check if the interpolator has reached 1.0
+			// and swap maximum and minimum so game object moves
+			// in the opposite direction.
+			if (t < timeToMove) {
+				// .. increate the t interpolater
+				t += Time.deltaTime / timeToMove;
+			} else {
+				t = timeToMove;
+				isCameraAnimationRunning = false;
+			}
+		}
+
+
+	}
+
+	public void StartGame() {
+		MainMenu.SetActive (false);
+		MainMenuMusic.SetActive (false);
+		GameMusic.SetActive (true);
+		currentGameState = gameState.Playing;
+		isCameraAnimationRunning = true;
 	}
 
 	public void IncrementPlinkoScore(float points) {
