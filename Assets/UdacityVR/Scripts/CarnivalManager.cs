@@ -2,7 +2,7 @@
 using UnityEngine;
 using TMPro;
 
-public class CarnivalScores : MonoBehaviour {
+public class CarnivalManager : MonoBehaviour {
 
 	[SerializeField]
 	private int PlinkoPointsWin = 2000;
@@ -41,7 +41,7 @@ public class CarnivalScores : MonoBehaviour {
 	[SerializeField]
 	private TextMeshPro coinScore;
 
-	public static CarnivalScores Instance;
+	public static CarnivalManager Instance;
 
 	private int plinkoPoints;
 	private int wheelPoints;
@@ -133,6 +133,14 @@ public class CarnivalScores : MonoBehaviour {
 	}
 
 	public void StartGame() {
+		MainMenu.SetActive (false);
+		MainMenuMusic.SetActive (false);
+		GameMusic.SetActive (true);
+		currentGameState = gameState.Playing;
+		isCameraAnimationRunning = true;
+	}
+
+	public void GameOver() {
 		MainMenu.SetActive (false);
 		MainMenuMusic.SetActive (false);
 		GameMusic.SetActive (true);

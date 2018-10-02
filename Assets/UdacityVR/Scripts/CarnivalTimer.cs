@@ -28,6 +28,7 @@ public class CarnivalTimer : MonoBehaviour {
 	{
 		if (sec == 0 && minutes == 0) {
 			timeText.text = "Time's Up!";
+			CarnivalManager.Instance.GameOver(points);
 			StopCoroutine (second ());
 		}
 	}

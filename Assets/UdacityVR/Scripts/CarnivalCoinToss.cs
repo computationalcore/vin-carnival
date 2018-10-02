@@ -91,7 +91,7 @@ public class CarnivalCoinToss : MonoBehaviour {
 	}
 
 	private void OnCoinLanded() {
-		CarnivalScores.Instance.IncrementCoinScore();
+		CarnivalManager.Instance.IncrementCoinScore();
 		ScoreHighlight sh = Instantiate(ScoreHighlighterPrefab, transform.position,
 			Quaternion.LookRotation(-transform.right));
 		sh.SetPoints(1000);

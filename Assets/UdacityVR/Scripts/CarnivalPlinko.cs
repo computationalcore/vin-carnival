@@ -50,7 +50,7 @@ public class CarnivalPlinko : MonoBehaviour {
     //to be called from the Plinko Coin script
     public void CoinHitBottom(float points) { 
         noActiveCoin = true;
-        CarnivalScores.Instance.IncrementPlinkoScore(points);
+		CarnivalManager.Instance.IncrementPlinkoScore(points);
         ScoreHighlight sh = Instantiate(ScoreHighlighterPrefab, PlinkoCoinOrigin.transform.position, Quaternion.LookRotation(-PlinkoCoinOrigin.transform.right) );
         sh.SetPoints(points);
 
