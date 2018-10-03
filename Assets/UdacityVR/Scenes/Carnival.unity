@@ -10431,7 +10431,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1181501233
 Transform:
   m_ObjectHideFlags: 0
@@ -11346,8 +11346,8 @@ MonoBehaviour:
     Vin Carnival is a non-profit open source virtual reality game made with Unity
     3D game engine and GoogleVR.
 
-    It my implementation of the Udacity Carnival, the first assessment project for
-    the Udacity VR Developer Nanodegree.'
+    This is my implementation of the Udacity Carnival, the first assessment project
+    for the Udacity VR Developer Nanodegree.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f76ef802b8b940c46a31f9027f2b0158, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: f76ef802b8b940c46a31f9027f2b0158, type: 2}
@@ -11392,7 +11392,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 180
+  m_firstOverflowCharacterIndex: 174
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
@@ -11414,10 +11414,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1220246057}
-    characterCount: 229
+    characterCount: 234
     spriteCount: 0
-    spaceCount: 36
-    wordCount: 36
+    spaceCount: 37
+    wordCount: 37
     linkCount: 0
     lineCount: 7
     pageCount: 1
@@ -11654,11 +11654,11 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: "HELP\n\nTo beat the game you have to score 2000 points in each of the 3
-    games in 4 minutes.\n\n- Plinko: Click on the panel to make the oscillating ball
-    fall. \n\n- Wheel of Fortune: Click on the Wheel to spin. \n\n- CoinToss: Click
-    on the coin pile to collect one coin, aim and click at the stand to throw the
-    coin. "
+  m_text: "HELP\n\nTo beat the game you have to score 2000 points on each of the 3
+    mini games in less than 4 minutes\n\n- Plinko: Click on the panel to make the
+    oscillating ball fall. \n\n- Wheel of Fortune: Click on the Wheel to spin. \n\n-
+    CoinToss: Click on the coin pile to collect one coin, aim and click at the stand
+    to throw the coin. "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: f76ef802b8b940c46a31f9027f2b0158, type: 2}
   m_sharedMaterial: {fileID: 2140474, guid: f76ef802b8b940c46a31f9027f2b0158, type: 2}
@@ -11703,7 +11703,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 257
+  m_firstOverflowCharacterIndex: 271
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_enableKerning: 1
@@ -11725,10 +11725,10 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1230056449}
-    characterCount: 309
+    characterCount: 323
     spriteCount: 0
-    spaceCount: 69
-    wordCount: 63
+    spaceCount: 72
+    wordCount: 66
     linkCount: 0
     lineCount: 12
     pageCount: 1
@@ -11812,7 +11812,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1287873723
 Transform:
   m_ObjectHideFlags: 0
