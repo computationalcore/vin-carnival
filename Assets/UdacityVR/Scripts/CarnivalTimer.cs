@@ -14,7 +14,6 @@ public class CarnivalTimer : MonoBehaviour {
 
 	int totalSeconds = 0;
 	int TOTAL_SECONDS = 0;
-	float fillamount;
 
 	// Auxiliary sound tick logic
 	int updatedSecond = 10;
@@ -38,11 +37,11 @@ public class CarnivalTimer : MonoBehaviour {
 			timeText.color = Color.red;
 			CarnivalManager.Instance.GameOver ();
 			stopped = true;
-			StopCoroutine (second ());
+			StopAllCoroutines ();
 		} else if (CarnivalManager.Instance.IsGameWin() && !stopped) {
 			// Stop the countdown if the player win
 			stopped = true;
-			StopCoroutine (second ());
+			StopAllCoroutines ();
 		}
 	}
 	IEnumerator second()
