@@ -322,8 +322,8 @@ public class CarnivalManager : MonoBehaviour {
 	/// <summary>
 	/// Increment the current score of the CoinToss mini game.
 	/// </summary>
-	public void IncrementCoinScore() 
+	public void IncrementCoinScore(float points) 
 	{
-		coinPoints += 1000;
+		coinPoints += (int) points;
 	}
 }

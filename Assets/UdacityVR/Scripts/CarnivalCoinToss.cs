@@ -104,7 +104,7 @@ public class CarnivalCoinToss : MonoBehaviour {
 	{
 		if (CarnivalManager.Instance.IsPlaying() && !CarnivalManager.Instance.IsCoinWon()) 
 		{
-			CarnivalManager.Instance.IncrementCoinScore ();
+			CarnivalManager.Instance.IncrementCoinScore (500);
 			ScoreHighlight sh = Instantiate (ScoreHighlighterPrefab, transform.position,
 				                   Quaternion.LookRotation (-transform.right));
 			sh.SetPoints (500);
