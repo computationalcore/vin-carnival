@@ -19,7 +19,7 @@ public class CarnivalWheel : MonoBehaviour {
 
     //Called when clicked
     public void SpinWheel() {
-        if (!isWheelSpinning)
+		if (!isWheelSpinning && CarnivalManager.Instance.IsPlaying())
             StartCoroutine(SpinForSeconds(Random.Range(4f, 8f))); //spins for a random time between 4 and 8 seconds
     }
 
@@ -50,11 +50,13 @@ public class CarnivalWheel : MonoBehaviour {
     }
 
     private void CarnivalNeedle_OnSpokeHit(float points) {
-        isWheelSpinning = false;
-		CarnivalManager.Instance.IncrementWheelScore(points);
+		if (CarnivalManager.Instance.IsPlaying ()) {
+			isWheelSpinning = false;
+			CarnivalManager.Instance.IncrementWheelScore (points);
 
-        ScoreHighlight sh = Instantiate(ScoreHighlighterPrefab, WheelOfFortune.transform.position + WheelOfFortune.transform.forward.normalized *.5f, 
-            Quaternion.LookRotation(-WheelOfFortune.transform.forward));
-        sh.SetPoints(points);
+			ScoreHighlight sh = Instantiate (ScoreHighlighterPrefab, WheelOfFortune.transform.position + WheelOfFortune.transform.forward.normalized * .5f, 
+				                         Quaternion.LookRotation (-WheelOfFortune.transform.forward));
+			sh.SetPoints (points);
+		}
     }
 }

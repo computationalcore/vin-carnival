@@ -30,9 +30,13 @@ public class CarnivalManager : MonoBehaviour {
 	private GameObject MainMenu;
 
 	[SerializeField]
-	private GameObject MainMenuMusic;
+	private AudioSource MainMenuMusic;
 	[SerializeField]
-	private GameObject GameMusic;
+	private AudioSource GameMusic;
+	[SerializeField]
+	private AudioSource WinSound;
+	[SerializeField]
+	private AudioSource GameOverSound;
 
 	[SerializeField]
 	private TextMeshPro plinkoScore;
@@ -53,16 +57,13 @@ public class CarnivalManager : MonoBehaviour {
 	private Boolean isCameraAnimationRunning = false;
 
 	// Possibles game states
-	private enum gameState {MainMenu, Playing, GameOver};
+	private enum gameState {MainMenu, Playing, GameWin, GameOver};
 	// Start Game state
 	private gameState currentGameState = gameState.MainMenu;
 
 	void Awake() {
 		if (Instance == null)
 			Instance = this;
-
-		GameMusic.SetActive (false);
-		
 
 		PlinkoPrize.SetActive(false);
 		WheelPrize.SetActive(false);
@@ -94,6 +95,17 @@ public class CarnivalManager : MonoBehaviour {
 			// Hide the coin pile to the prize fall correctly
 			CoinPile.SetActive(false);
 		}
+
+		// Check if the user won the game
+		if ( 
+			(plinkoPoints >= PlinkoPointsWin) &&
+			(wheelPoints >= WheelPointsWin) &&
+			(coinPoints >= CoinPointsWin) &&
+			(currentGameState == gameState.Playing)
+		   )
+		{
+			GameWin();
+		}
 	}
 
 	void LateUpdate() {
@@ -109,7 +121,7 @@ public class CarnivalManager : MonoBehaviour {
 					Mathf.LerpAngle (posCam1.transform.eulerAngles.y, posCam2.transform.eulerAngles.y, t),
 					Mathf.LerpAngle (posCam1.transform.eulerAngles.z, posCam2.transform.eulerAngles.z, t)
 				);
-			} else {
+			} else if (currentGameState == gameState.MainMenu) {
 				MainCamera.transform.position = Vector3.Lerp (posCam2.transform.position, posCam1.transform.position, t);
 				MainCamera.transform.rotation = Quaternion.Euler (
 					Mathf.LerpAngle (posCam2.transform.eulerAngles.x, posCam1.transform.eulerAngles.x, t),
@@ -128,24 +140,38 @@ public class CarnivalManager : MonoBehaviour {
 				isCameraAnimationRunning = false;
 			}
 		}
-
-
 	}
 
 	public void StartGame() {
 		MainMenu.SetActive (false);
-		MainMenuMusic.SetActive (false);
-		GameMusic.SetActive (true);
+		MainMenuMusic.Stop();
+		GameMusic.Play();
 		currentGameState = gameState.Playing;
 		isCameraAnimationRunning = true;
 	}
 
-	public void GameOver() {
-		MainMenu.SetActive (false);
-		MainMenuMusic.SetActive (false);
-		GameMusic.SetActive (true);
-		currentGameState = gameState.Playing;
-		isCameraAnimationRunning = true;
+	public void GameWin()
+	{
+		// Stop the game music
+		GameMusic.Stop();
+		WinSound.Play();
+		currentGameState = gameState.GameWin;
+	}
+
+	public void GameOver()
+	{
+		// Stop the game music
+		GameMusic.Stop();
+		GameOverSound.Play();
+		currentGameState = gameState.GameOver;
+	}
+
+	public bool IsPlaying() {
+		return (currentGameState == gameState.Playing);
+	}
+
+	public bool IsGameWin() {
+		return (currentGameState == gameState.GameWin);
 	}
 
 	public void IncrementPlinkoScore(float points) {

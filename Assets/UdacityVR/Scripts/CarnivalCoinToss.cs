@@ -63,7 +63,8 @@ public class CarnivalCoinToss : MonoBehaviour {
 	}
 
 	public void PickUpCoin() {
-		if (!coinPickedUp) {
+		if (!coinPickedUp && CarnivalManager.Instance.IsPlaying()) 
+		{
 			clickNotification.Play();
 			currCoin = Instantiate(CoinPrefab);
 			currCoin.GetComponent<Collider>().enabled = false;
@@ -76,13 +77,13 @@ public class CarnivalCoinToss : MonoBehaviour {
 	public void TossCoin() {
 		if (coinPickedUp) { 
 			coinPickedUp = false;
-			currCoin.GetComponent<Collider>().enabled = true;
-			currCoin.GetComponent<AudioSource>().Play();
-			Rigidbody r = currCoin.GetComponent<Rigidbody>();
+			currCoin.GetComponent<Collider> ().enabled = true;
+			currCoin.GetComponent<AudioSource> ().Play ();
+			Rigidbody r = currCoin.GetComponent<Rigidbody> ();
 			r.isKinematic = false;
 			Vector3 targetVel = VRView.transform.position + (VRView.transform.forward); //the direction of the toss
 			targetVel.y = 0f;
-			targetVel.Normalize();
+			targetVel.Normalize ();
 			targetVel.y = .8f; //have a consistant y velocity
 			float power = (MaxTossPower - MinTossPower) * PowerScalar.value + MinTossPower;
 			r.velocity = targetVel.normalized * power;
@@ -91,12 +92,15 @@ public class CarnivalCoinToss : MonoBehaviour {
 	}
 
 	private void OnCoinLanded() {
-		CarnivalManager.Instance.IncrementCoinScore();
-		ScoreHighlight sh = Instantiate(ScoreHighlighterPrefab, transform.position,
-			Quaternion.LookRotation(-transform.right));
-		sh.SetPoints(1000);
+		if (CarnivalManager.Instance.IsPlaying ()) 
+		{
+			CarnivalManager.Instance.IncrementCoinScore ();
+			ScoreHighlight sh = Instantiate (ScoreHighlighterPrefab, transform.position,
+				                   Quaternion.LookRotation (-transform.right));
+			sh.SetPoints (1000);
 
-		yay.Play();
+			yay.Play ();
+		}
 		/*
 		#if UNITY_EDITOR
 		TMPro.TextMeshPro text = new GameObject().AddComponent<TMPro.TextMeshPro>();
@@ -108,11 +112,14 @@ public class CarnivalCoinToss : MonoBehaviour {
 	}
 
 	private void OnCoinMissed() {
-		ScoreHighlight sh = Instantiate(ScoreHighlighterPrefab, transform.position,
-			Quaternion.LookRotation(-transform.right));
-		sh.SetPoints(0);
+		if (CarnivalManager.Instance.IsPlaying ()) 
+		{
+			ScoreHighlight sh = Instantiate (ScoreHighlighterPrefab, transform.position,
+				                   Quaternion.LookRotation (-transform.right));
+			sh.SetPoints (0);
 
-		fail.Play();
+			fail.Play ();
+		}
 	}
 
 }
