@@ -53,10 +53,10 @@ public class CarnivalTimer : MonoBehaviour {
 				minutes--;
 			}
 			if (!stopped) {
-				timeText.text = minutes.ToString ("00") + " : " + sec.ToString ("00");
+				timeText.text = (sec != 60 ? minutes: minutes+1).ToString ("00") + " : " + (sec != 60 ? sec.ToString ("00"): "00");
 
 				// The last 10 seconds of the countdown
-				if (sec < 10 && minutes == 0) {
+				if (sec <= 10 && minutes == 0) {
 					// If second is not the same play the alert sound (Play one tick per second when sec <10 just to warn user)
 					if (updatedSecond != sec) {
 						ClockTick.Play ();
@@ -89,12 +89,22 @@ public class CarnivalTimer : MonoBehaviour {
 		TOTAL_SECONDS = 0;
 		stopped = false;
 
+		// Reset color of the time text
+		timeText.color = Color.white;
+
+
+
 		timeText.text = minutes.ToString("00") + " : " + sec.ToString("00");
 		if (minutes > 0)
 			totalSeconds += minutes * 60;
 		if (sec > 0)
 			totalSeconds += sec;
 		TOTAL_SECONDS = totalSeconds;
+
+		// Reset the circunference
+		float fill = (float)totalSeconds/TOTAL_SECONDS;
+		loading.fillAmount = fill;
+
 		StartCoroutine (second ());
 	}
 }

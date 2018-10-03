@@ -90,6 +90,8 @@ public class CarnivalManager : MonoBehaviour {
 		wheelPrizeOriginalRot = WheelPrize.transform.GetChild (0).transform.rotation;
 		coinPrizeOriginalRot = CoinPrize.transform.GetChild(0).transform.rotation;
 
+		GameOverCanvas.SetActive(false);
+
 		ResetGame ();
 	}
 
