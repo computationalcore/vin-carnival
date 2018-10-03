@@ -48,10 +48,11 @@ public class CarnivalPlinko : MonoBehaviour {
     }
 
     //to be called from the Plinko Coin script
-    public void CoinHitBottom(float points) { 
-		if (CarnivalManager.Instance.IsPlaying()) 
+    public void CoinHitBottom(float points) 
+	{ 
+		noActiveCoin = true;
+		if (CarnivalManager.Instance.IsPlaying() && !CarnivalManager.Instance.IsPlinkoWon())
 		{
-			noActiveCoin = true;
 			CarnivalManager.Instance.IncrementPlinkoScore (points);
 			ScoreHighlight sh = Instantiate (ScoreHighlighterPrefab, PlinkoCoinOrigin.transform.position, Quaternion.LookRotation (-PlinkoCoinOrigin.transform.right));
 			sh.SetPoints (points);
@@ -61,9 +62,9 @@ public class CarnivalPlinko : MonoBehaviour {
     }
 
     public void DropCoin() {
-		if (CarnivalManager.Instance.IsPlaying()) 
+		if (CarnivalManager.Instance.IsPlaying () && !CarnivalManager.Instance.IsPlinkoWon() && currentCoin)
 		{
-			currentCoin.DropCoin (this);
+			currentCoin.DropCoin(this);
 			currentCoin = null;
 			BellDing.Play ();
 		}

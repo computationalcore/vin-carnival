@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -8,26 +7,24 @@ public class CarnivalTimer : MonoBehaviour {
 
 	public Image loading;
 	public Text timeText;
-	public int minutes;
-	public int sec;
+	public int Minutes;
+	public int Seconds;
 	public AudioSource ClockTick;
 
-	int totalSeconds = 0;
-	int TOTAL_SECONDS = 0;
+	private int totalSeconds = 0;
+	private int TOTAL_SECONDS = 0;
+	private int minutes;
+	private int sec;
 
 	// Auxiliary sound tick logic
 	int updatedSecond = 10;
 
-	private Boolean stopped = false;
+	private bool stopped = false;
+
 	void Start ()
 	{
-		timeText.text = minutes.ToString("00") + " : " + sec.ToString("00");
-		if (minutes > 0)
-			totalSeconds += minutes * 60;
-		if (sec > 0)
-			totalSeconds += sec;
-		TOTAL_SECONDS = totalSeconds;
-		StartCoroutine (second ());
+		minutes = Minutes;
+		sec = Seconds;
 	}
 
 	void Update ()
@@ -38,7 +35,7 @@ public class CarnivalTimer : MonoBehaviour {
 			CarnivalManager.Instance.GameOver ();
 			stopped = true;
 			StopAllCoroutines ();
-		} else if (CarnivalManager.Instance.IsGameWin() && !stopped) {
+		} else if (CarnivalManager.Instance.IsGameWon() && !stopped) {
 			// Stop the countdown if the player win
 			stopped = true;
 			StopAllCoroutines ();
@@ -47,29 +44,31 @@ public class CarnivalTimer : MonoBehaviour {
 	IEnumerator second()
 	{
 		yield return new WaitForSeconds (1f);
-		if(sec > 0)
-			sec--;
-		if (sec == 0 && minutes != 0) {
-			sec = 60;
-			minutes--;
-		}
-		if (!stopped) {
-			timeText.text = minutes.ToString ("00") + " : " + sec.ToString ("00");
-
-			// The last 10 seconds of the countdown
-			if(sec < 10 && minutes == 0){
-				// If second is not the same play the alert sound (Play one tick per second when sec <10 just to warn user)
-				if (updatedSecond != sec) {
-					ClockTick.Play ();
-					updatedSecond = sec;
-				}
-				if(timeText.color != Color.red){
-					timeText.color = Color.red;
-				}
-				
+		if (CarnivalManager.Instance.IsPlaying ()) {
+			if (sec > 0)
+				sec--;
+			if (sec == 0 && minutes != 0) {
+				sec = 60;
+				minutes--;
 			}
+			if (!stopped) {
+				timeText.text = minutes.ToString ("00") + " : " + sec.ToString ("00");
+
+				// The last 10 seconds of the countdown
+				if (sec < 10 && minutes == 0) {
+					// If second is not the same play the alert sound (Play one tick per second when sec <10 just to warn user)
+					if (updatedSecond != sec) {
+						ClockTick.Play ();
+						updatedSecond = sec;
+					}
+					if (timeText.color != Color.red) {
+						timeText.color = Color.red;
+					}
+				
+				}
+			}
+			fillLoading ();
 		}
-		fillLoading ();
 		StartCoroutine (second ());
 	}
 
@@ -78,5 +77,23 @@ public class CarnivalTimer : MonoBehaviour {
 		totalSeconds--;
 		float fill = (float)totalSeconds/TOTAL_SECONDS;
 		loading.fillAmount = fill;
+	}
+
+	public void ResetTimer()
+	{
+		minutes = Minutes;
+		sec = Seconds;
+
+		totalSeconds = 0;
+		TOTAL_SECONDS = 0;
+		stopped = false;
+
+		timeText.text = minutes.ToString("00") + " : " + sec.ToString("00");
+		if (minutes > 0)
+			totalSeconds += minutes * 60;
+		if (sec > 0)
+			totalSeconds += sec;
+		TOTAL_SECONDS = totalSeconds;
+		StartCoroutine (second ());
 	}
 }

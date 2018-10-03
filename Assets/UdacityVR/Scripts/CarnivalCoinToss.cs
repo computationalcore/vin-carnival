@@ -63,7 +63,7 @@ public class CarnivalCoinToss : MonoBehaviour {
 	}
 
 	public void PickUpCoin() {
-		if (!coinPickedUp && CarnivalManager.Instance.IsPlaying()) 
+		if (!coinPickedUp && CarnivalManager.Instance.IsPlaying() && !CarnivalManager.Instance.IsCoinWon()) 
 		{
 			clickNotification.Play();
 			currCoin = Instantiate(CoinPrefab);
@@ -92,7 +92,7 @@ public class CarnivalCoinToss : MonoBehaviour {
 	}
 
 	private void OnCoinLanded() {
-		if (CarnivalManager.Instance.IsPlaying ()) 
+		if (CarnivalManager.Instance.IsPlaying() && !CarnivalManager.Instance.IsCoinWon()) 
 		{
 			CarnivalManager.Instance.IncrementCoinScore ();
 			ScoreHighlight sh = Instantiate (ScoreHighlighterPrefab, transform.position,
@@ -112,7 +112,7 @@ public class CarnivalCoinToss : MonoBehaviour {
 	}
 
 	private void OnCoinMissed() {
-		if (CarnivalManager.Instance.IsPlaying ()) 
+		if (CarnivalManager.Instance.IsPlaying () && !CarnivalManager.Instance.IsCoinWon()) 
 		{
 			ScoreHighlight sh = Instantiate (ScoreHighlighterPrefab, transform.position,
 				                   Quaternion.LookRotation (-transform.right));
