@@ -12,7 +12,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Game win and lose screen
 - This CHANGELOG file
 
-## [1.0](../../releases/tag/v1.1)
+## [1.0](../../releases/tag/v1.0)
 ### Added
 - Complete version of the project as the project specs requests
 
