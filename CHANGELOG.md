@@ -8,7 +8,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/en/1.0.0/).
 - Main Menu with Help and about
 - Countdown Timer
 - Fireworks
-- 3 different mini games
+- 3 different mini games scores
 - Game win and lose screen
 - This CHANGELOG file
 
