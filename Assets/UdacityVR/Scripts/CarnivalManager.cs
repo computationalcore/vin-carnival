@@ -75,6 +75,9 @@ public class CarnivalManager : MonoBehaviour {
 	private Quaternion wheelPrizeOriginalRot;
 	private Quaternion coinPrizeOriginalRot;
 
+	/// <summary>
+	/// Fixed joystick class.
+	/// </summary>
 	void Awake() {
 		if (Instance == null)
 			Instance = this;
@@ -95,7 +98,10 @@ public class CarnivalManager : MonoBehaviour {
 			Instance = null;
 	}
 
-	// Update is called once per frame
+	/// <summary>
+	/// Update is called once per frame.
+	/// Checks the score, if a particular game is won and if user win all the games.
+	/// </summary>
 	void Update () {
 		plinkoScore.text = "Plinko: " + plinkoPoints.ToString("0000");
 		wheelScore.text = "Wheel: " + wheelPoints.ToString("0000");
@@ -128,6 +134,9 @@ public class CarnivalManager : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Handle transition camera animations.
+	/// </summary>
 	void LateUpdate() {
 		ReOrientCamera ();
 	}
@@ -162,6 +171,9 @@ public class CarnivalManager : MonoBehaviour {
 		}
 	}
 
+	/// <summary>
+	/// Reset game score and prizes.
+	/// </summary>
 	private void ResetGame(){
 		// Reset score
 		plinkoPoints = 0;
@@ -175,12 +187,8 @@ public class CarnivalManager : MonoBehaviour {
 		PlinkoPrize.transform.GetChild(0).transform.rotation = plinkoPrizeOriginalRot;
 		WheelPrize.transform.GetChild(0).transform.rotation = wheelPrizeOriginalRot;
 		CoinPrize.transform.GetChild(0).transform.rotation = coinPrizeOriginalRot;
-		/*
-		PlinkoPrize.GetComponent<Rigidbody>().MovePosition(plinkoPrizeOriginalPos);
-		WheelPrize.GetComponent<Rigidbody>().MovePosition(wheelPrizeOriginalPos);
-		CoinPrize.GetComponent<Rigidbody>().MovePosition(coinPrizeOriginalPos);
-		*/
-		// Reset Prizes
+
+		// Reset Prizes visibility
 		PlinkoPrize.SetActive(false);
 		WheelPrize.SetActive(false);
 		CoinPrize.SetActive(false);
@@ -189,6 +197,9 @@ public class CarnivalManager : MonoBehaviour {
 		CoinPile.SetActive(true);
 	}
 
+	/// <summary>
+	/// To to main menu.
+	/// </summary>
 	public void GoToMainMenu() {
 		ResetGame();
 		GameOverCanvas.SetActive(false);
@@ -198,6 +209,9 @@ public class CarnivalManager : MonoBehaviour {
 		isCameraAnimationRunning = true;
 	}
 
+	/// <summary>
+	/// Start the game.
+	/// </summary>
 	public void StartGame() {
 		ResetGame();
 		GameOverCanvas.SetActive(false);
@@ -208,6 +222,9 @@ public class CarnivalManager : MonoBehaviour {
 		isCameraAnimationRunning = true;
 	}
 
+	/// <summary>
+	/// Set game win state.
+	/// </summary>
 	public void GameWin()
 	{
 		// Stop the game music
@@ -219,6 +236,9 @@ public class CarnivalManager : MonoBehaviour {
 		GameOverText.color = Color.yellow;
 	}
 
+	/// <summary>
+	/// Set game game over state.
+	/// </summary>
 	public void GameOver()
 	{
 		// Stop the game music
@@ -230,34 +250,58 @@ public class CarnivalManager : MonoBehaviour {
 		GameOverText.color = Color.red;
 	}
 
+	/// <summary>
+	/// Return true if game state is playing.
+	/// </summary>
 	public bool IsPlaying() {
 		return (currentGameState == gameState.Playing);
 	}
 
+	/// <summary>
+	/// Return true user beats the plink mini game.
+	/// </summary>
 	public bool IsPlinkoWon() {
 		return (plinkoPoints >= PlinkoPointsWin);
 	}
 
+	/// <summary>
+	/// Return true user beats the wheel mini game.
+	/// </summary>
 	public bool IsWheelWon() {
 		return (wheelPoints >= WheelPointsWin);
 	}
 
+	/// <summary>
+	/// Return true user beats the CoinToss mini game.
+	/// </summary>
 	public bool IsCoinWon() {
 		return (coinPoints >= CoinPointsWin);
 	}
 
+	/// <summary>
+	/// Return true user beats all the games.
+	/// </summary>
 	public bool IsGameWon() {
 		return (currentGameState == gameState.GameWin);
 	}
 
+	/// <summary>
+	/// Increment the current score of the Plinko mini game.
+	/// </summary>
 	public void IncrementPlinkoScore(float points) {
 		plinkoPoints += (int) points;
 	}
 
+	/// <summary>
+	/// Increment the current score of the Wheel mini game.
+	/// </summary>
 	public void IncrementWheelScore(float points) {
 		wheelPoints += (int) points;
 	}
 
+	/// <summary>
+	/// Increment the current score of the CoinToss mini game.
+	/// </summary>
 	public void IncrementCoinScore() {
 		coinPoints += 1000;
 	}

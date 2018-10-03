@@ -41,6 +41,7 @@ public class CarnivalTimer : MonoBehaviour {
 			StopAllCoroutines ();
 		}
 	}
+
 	IEnumerator second()
 	{
 		yield return new WaitForSeconds (1f);

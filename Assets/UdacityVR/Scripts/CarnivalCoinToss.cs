@@ -44,13 +44,16 @@ public class CarnivalCoinToss : MonoBehaviour {
 	private bool coinPickedUp = false;
 	private float pickUpTime = 0f;
 
-	void Start() {
+	void Start() 
+	{
 		CarnivalCoinTossPlatform.OnCoinLanded += OnCoinLanded;
 		CoinTossCoin.OnCoinMissed += OnCoinMissed;
 	}
 
-	void Update() {
-		if (coinPickedUp) {
+	void Update() 
+	{
+		if (coinPickedUp) 
+		{
 			//HeadPose.position doesn't seem to work...
 			Vector3 target = VRView.transform.position + (VRView.transform.rotation * Vector3.forward) * DistanceFromFace;
 			Vector3 curr = currCoin.transform.position;
@@ -62,7 +65,8 @@ public class CarnivalCoinToss : MonoBehaviour {
 		}
 	}
 
-	public void PickUpCoin() {
+	public void PickUpCoin() 
+	{
 		if (!coinPickedUp && CarnivalManager.Instance.IsPlaying() && !CarnivalManager.Instance.IsCoinWon()) 
 		{
 			clickNotification.Play();
@@ -74,8 +78,10 @@ public class CarnivalCoinToss : MonoBehaviour {
 		}
 	}
 
-	public void TossCoin() {
-		if (coinPickedUp) { 
+	public void TossCoin() 
+	{
+		if (coinPickedUp) 
+		{ 
 			coinPickedUp = false;
 			currCoin.GetComponent<Collider> ().enabled = true;
 			currCoin.GetComponent<AudioSource> ().Play ();
@@ -91,7 +97,8 @@ public class CarnivalCoinToss : MonoBehaviour {
 		}
 	}
 
-	private void OnCoinLanded() {
+	private void OnCoinLanded() 
+	{
 		if (CarnivalManager.Instance.IsPlaying() && !CarnivalManager.Instance.IsCoinWon()) 
 		{
 			CarnivalManager.Instance.IncrementCoinScore ();
@@ -111,7 +118,8 @@ public class CarnivalCoinToss : MonoBehaviour {
 		*/
 	}
 
-	private void OnCoinMissed() {
+	private void OnCoinMissed() 
+	{
 		if (CarnivalManager.Instance.IsPlaying () && !CarnivalManager.Instance.IsCoinWon()) 
 		{
 			ScoreHighlight sh = Instantiate (ScoreHighlighterPrefab, transform.position,
