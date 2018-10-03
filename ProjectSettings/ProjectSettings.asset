@@ -11,8 +11,8 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: Udacity, Inc.
-  productName: Udacity Carnival
+  companyName: Vin Busquet
+  productName: Vin Carnival
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.083045, g: 0.08564016, b: 0.08823532, a: 1}
@@ -128,7 +128,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0
+  bundleVersion: 2.0
   preloadedAssets: []
   metroInputSource: 0
   wsaTransparentSwapchain: 0
@@ -160,10 +160,10 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.udacity.udacitycarnival
+    Android: com.computationalcore.vincarnival
     Standalone: com.Company.ProductName
     Tizen: com.udacity.p1
-    iOS: com.computationalcore.vincarnival
+    iOS: com.computationalcore.vin-carnival
     tvOS: com.udacity.p1
   buildNumber:
     iOS: 0
@@ -250,8 +250,8 @@ PlayerSettings:
   AndroidTargetDevice: 0
   AndroidSplashScreenScale: 0
   androidSplashScreen: {fileID: 0}
-  AndroidKeystoreName: 
-  AndroidKeyaliasName: 
+  AndroidKeystoreName: /Users/viniciusrbusquet/Documents/Academics/Nanodegrees/VRDeveloper/computationalcore.keystore
+  AndroidKeyaliasName: computationalcore
   AndroidTVCompatibility: 1
   AndroidIsGame: 1
   AndroidEnableTango: 0
@@ -270,6 +270,135 @@ PlayerSettings:
       m_Icon: {fileID: 0}
       m_Width: 128
       m_Height: 128
+      m_Kind: 0
+  - m_BuildTarget: iPhone
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 6da581101d852486ebc0cc80912d675f, type: 3}
+      m_Width: 180
+      m_Height: 180
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: ea65abcc5d3b245f7a4c4d2576898e9f, type: 3}
+      m_Width: 167
+      m_Height: 167
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: c6d4c73796e21488a999e05135440e47, type: 3}
+      m_Width: 152
+      m_Height: 152
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 1709a8a02b9e7492f8846d74a03481f8, type: 3}
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: a90734f7b5907465dbf210a61ee2be85, type: 3}
+      m_Width: 120
+      m_Height: 120
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 54e07fe727ff04651af67f8abe516638, type: 3}
+      m_Width: 114
+      m_Height: 114
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 1f9f97d7e8a4c4a3a9d5ae0dc4e02687, type: 3}
+      m_Width: 76
+      m_Height: 76
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: a21db0bb098af4c13b359bfe463ed04e, type: 3}
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: a83d284bd988d4031af3518a452d0256, type: 3}
+      m_Width: 57
+      m_Height: 57
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 120
+      m_Height: 120
+      m_Kind: 3
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 80
+      m_Height: 80
+      m_Kind: 3
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 40
+      m_Height: 40
+      m_Kind: 3
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 87
+      m_Height: 87
+      m_Kind: 1
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 58
+      m_Height: 58
+      m_Kind: 1
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 29
+      m_Height: 29
+      m_Kind: 1
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 60
+      m_Height: 60
+      m_Kind: 2
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 40
+      m_Height: 40
+      m_Kind: 2
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 20
+      m_Height: 20
+      m_Kind: 2
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 1024
+      m_Height: 1024
+      m_Kind: 4
+  - m_BuildTarget: Android
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 4db1301a0cb6848cb807214e91a194e5, type: 3}
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: d47486996706a4baba931b11adeb1ee7, type: 3}
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 339983fe389ff4e1783ce8e08f35067e, type: 3}
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: c68f836fa09e349678c910a689670b8d, type: 3}
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: def7b932b331648ddbed97dbdfca7dfc, type: 3}
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 0
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: cbbdf3d9e5d5b4cafaec946ed30b7e67, type: 3}
+      m_Width: 36
+      m_Height: 36
       m_Kind: 0
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs:
