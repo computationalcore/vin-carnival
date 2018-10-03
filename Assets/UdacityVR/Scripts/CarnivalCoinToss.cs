@@ -34,10 +34,13 @@ public class CarnivalCoinToss : MonoBehaviour {
 	public AudioSource clickNotification;
 
 	[Tooltip("The audio clip to play when the coin lands")]
-	public AudioSource yay;
+	public AudioSource hit;
 
 	[Tooltip("The audio clip to play when coin misses")]
 	public AudioSource fail;
+
+	[Tooltip("The audio clip to play when the user win the coin game")]
+	public AudioSource yay;
 
 	private GameObject currCoin;
 
@@ -104,9 +107,14 @@ public class CarnivalCoinToss : MonoBehaviour {
 			CarnivalManager.Instance.IncrementCoinScore ();
 			ScoreHighlight sh = Instantiate (ScoreHighlighterPrefab, transform.position,
 				                   Quaternion.LookRotation (-transform.right));
-			sh.SetPoints (1000);
+			sh.SetPoints (500);
 
-			yay.Play ();
+			hit.Play();
+			// If user win the coins game, play the yay sound
+			if (CarnivalManager.Instance.IsCoinWon ()) {
+				yay.Play();
+			}
+
 		}
 		/*
 		#if UNITY_EDITOR
@@ -126,7 +134,7 @@ public class CarnivalCoinToss : MonoBehaviour {
 				                   Quaternion.LookRotation (-transform.right));
 			sh.SetPoints (0);
 
-			fail.Play ();
+			fail.Play();
 		}
 	}
 

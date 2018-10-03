@@ -15,6 +15,9 @@ public class CarnivalWheel : MonoBehaviour {
     [Tooltip("The Initial Speed that is the wheel starts spinning at")]
     public float SpinForce = 10f;
 
+	[Tooltip("The audio clip to play when the user win the wheel game")]
+	public AudioSource yay;
+
     private bool isWheelSpinning = false;
 
     //Called when clicked
@@ -57,6 +60,11 @@ public class CarnivalWheel : MonoBehaviour {
 			ScoreHighlight sh = Instantiate (ScoreHighlighterPrefab, WheelOfFortune.transform.position + WheelOfFortune.transform.forward.normalized * .5f, 
 				                         Quaternion.LookRotation (-WheelOfFortune.transform.forward));
 			sh.SetPoints (points);
+
+			// If user win the wheel game, play the yay sound
+			if (CarnivalManager.Instance.IsWheelWon()) {
+				yay.Play();
+			}
 		}
 
 		isWheelSpinning = false;

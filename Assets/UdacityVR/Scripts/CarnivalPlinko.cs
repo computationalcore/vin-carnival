@@ -25,6 +25,9 @@ public class CarnivalPlinko : MonoBehaviour {
     [Tooltip("A sound to play when the plinko coin hits the bottom")]
     public AudioSource Thud;
 
+	[Tooltip("The audio clip to play when the user win the wheel game")]
+	public AudioSource yay;
+
     private PlinkoCoin currentCoin; //the coin that we are in charge off
     private bool noActiveCoin = true;
     private float createCoinTime = 0f;
@@ -58,6 +61,11 @@ public class CarnivalPlinko : MonoBehaviour {
 			sh.SetPoints (points);
 
 			Thud.Play ();
+			// If user win the pinko game, play the yay sound
+			if (CarnivalManager.Instance.IsPlinkoWon()) 
+			{
+				yay.Play();
+			}
 		}
     }
 

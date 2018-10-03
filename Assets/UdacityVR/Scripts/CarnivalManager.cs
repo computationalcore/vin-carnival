@@ -76,9 +76,10 @@ public class CarnivalManager : MonoBehaviour {
 	private Quaternion coinPrizeOriginalRot;
 
 	/// <summary>
-	/// Fixed joystick class.
+	/// Setup the game manager when created.
 	/// </summary>
-	void Awake() {
+	void Awake() 
+	{
 		if (Instance == null)
 			Instance = this;
 
@@ -93,7 +94,8 @@ public class CarnivalManager : MonoBehaviour {
 		ResetGame ();
 	}
 
-	void OnDestroy() {
+	void OnDestroy() 
+	{
 		if (Instance = this)
 			Instance = null;
 	}
@@ -102,7 +104,8 @@ public class CarnivalManager : MonoBehaviour {
 	/// Update is called once per frame.
 	/// Checks the score, if a particular game is won and if user win all the games.
 	/// </summary>
-	void Update () {
+	void Update () 
+	{
 		plinkoScore.text = "Plinko: " + plinkoPoints.ToString("0000");
 		wheelScore.text = "Wheel: " + wheelPoints.ToString("0000");
 		coinScore.text = "Coins: " + coinPoints.ToString("0000");
@@ -137,20 +140,25 @@ public class CarnivalManager : MonoBehaviour {
 	/// <summary>
 	/// Handle transition camera animations.
 	/// </summary>
-	void LateUpdate() {
+	void LateUpdate() 
+	{
 		ReOrientCamera ();
 	}
 
-	public void ReOrientCamera (){
-		if (isCameraAnimationRunning) {
-			if (currentGameState == gameState.Playing && MainCamera.transform.position != posCam2.transform.position) {
+	public void ReOrientCamera ()
+	{
+		if (isCameraAnimationRunning) 
+		{
+			if (currentGameState == gameState.Playing && MainCamera.transform.position != posCam2.transform.position) 
+			{
 				MainCamera.transform.position = Vector3.Lerp (posCam1.transform.position, posCam2.transform.position, t);
 				MainCamera.transform.rotation = Quaternion.Euler (
 					Mathf.LerpAngle (posCam1.transform.eulerAngles.x, posCam2.transform.eulerAngles.x, t),
 					Mathf.LerpAngle (posCam1.transform.eulerAngles.y, posCam2.transform.eulerAngles.y, t),
 					Mathf.LerpAngle (posCam1.transform.eulerAngles.z, posCam2.transform.eulerAngles.z, t)
 				);
-			} else if (currentGameState == gameState.MainMenu && MainCamera.transform.position != posCam1.transform.position) {
+			} else if (currentGameState == gameState.MainMenu && MainCamera.transform.position != posCam1.transform.position) 
+			{
 				MainCamera.transform.position = Vector3.Lerp (posCam2.transform.position, posCam1.transform.position, t);
 				MainCamera.transform.rotation = Quaternion.Euler (
 					Mathf.LerpAngle (posCam2.transform.eulerAngles.x, posCam1.transform.eulerAngles.x, t),
@@ -161,10 +169,12 @@ public class CarnivalManager : MonoBehaviour {
 			// now check if the interpolator has reached 1.0
 			// and swap maximum and minimum so game object moves
 			// in the opposite direction.
-			if (t < timeToMove) {
+			if (t < timeToMove) 
+			{
 				// .. increate the t interpolater
 				t += Time.deltaTime / timeToMove;
-			} else {
+			} else 
+			{
 				t = 0.0f;
 				isCameraAnimationRunning = false;
 			}
@@ -174,7 +184,8 @@ public class CarnivalManager : MonoBehaviour {
 	/// <summary>
 	/// Reset game score and prizes.
 	/// </summary>
-	private void ResetGame(){
+	private void ResetGame()
+	{
 		// Reset score
 		plinkoPoints = 0;
 		wheelPoints = 0;
@@ -200,7 +211,8 @@ public class CarnivalManager : MonoBehaviour {
 	/// <summary>
 	/// To to main menu.
 	/// </summary>
-	public void GoToMainMenu() {
+	public void GoToMainMenu() 
+	{
 		ResetGame();
 		GameOverCanvas.SetActive(false);
 		MainMenu.SetActive(true);
@@ -212,7 +224,8 @@ public class CarnivalManager : MonoBehaviour {
 	/// <summary>
 	/// Start the game.
 	/// </summary>
-	public void StartGame() {
+	public void StartGame() 
+	{
 		ResetGame();
 		GameOverCanvas.SetActive(false);
 		MainMenu.SetActive(false);
@@ -253,56 +266,64 @@ public class CarnivalManager : MonoBehaviour {
 	/// <summary>
 	/// Return true if game state is playing.
 	/// </summary>
-	public bool IsPlaying() {
+	public bool IsPlaying() 
+	{
 		return (currentGameState == gameState.Playing);
 	}
 
 	/// <summary>
 	/// Return true user beats the plink mini game.
 	/// </summary>
-	public bool IsPlinkoWon() {
+	public bool IsPlinkoWon() 
+	{
 		return (plinkoPoints >= PlinkoPointsWin);
 	}
 
 	/// <summary>
 	/// Return true user beats the wheel mini game.
 	/// </summary>
-	public bool IsWheelWon() {
+	public bool IsWheelWon() 
+	{
 		return (wheelPoints >= WheelPointsWin);
 	}
 
 	/// <summary>
 	/// Return true user beats the CoinToss mini game.
 	/// </summary>
-	public bool IsCoinWon() {
+	public bool IsCoinWon() 
+	{
 		return (coinPoints >= CoinPointsWin);
 	}
 
 	/// <summary>
 	/// Return true user beats all the games.
 	/// </summary>
-	public bool IsGameWon() {
+	public bool IsGameWon() 
+	{
 		return (currentGameState == gameState.GameWin);
 	}
 
 	/// <summary>
 	/// Increment the current score of the Plinko mini game.
 	/// </summary>
-	public void IncrementPlinkoScore(float points) {
+	public void IncrementPlinkoScore(float points) 
+	{
 		plinkoPoints += (int) points;
 	}
 
 	/// <summary>
 	/// Increment the current score of the Wheel mini game.
 	/// </summary>
-	public void IncrementWheelScore(float points) {
+	public void IncrementWheelScore(float points) 
+	{
 		wheelPoints += (int) points;
 	}
 
 	/// <summary>
 	/// Increment the current score of the CoinToss mini game.
 	/// </summary>
-	public void IncrementCoinScore() {
+	public void IncrementCoinScore() 
+	{
 		coinPoints += 1000;
 	}
 }
