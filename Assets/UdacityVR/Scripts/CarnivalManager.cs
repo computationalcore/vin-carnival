@@ -67,19 +67,25 @@ public class CarnivalManager : MonoBehaviour {
 	// Start Game state
 	private gameState currentGameState = gameState.MainMenu;
 
-	// To store prizes original position
+	// To store prizes original position and rotation
 	private Vector3 plinkoPrizeOriginalPos;
 	private Vector3 wheelPrizeOriginalPos;
 	private Vector3 coinPrizeOriginalPos;
+	private Quaternion plinkoPrizeOriginalRot;
+	private Quaternion wheelPrizeOriginalRot;
+	private Quaternion coinPrizeOriginalRot;
 
 	void Awake() {
 		if (Instance == null)
 			Instance = this;
 
-		// Store prizes original position
-		plinkoPrizeOriginalPos =  new Vector3(PlinkoPrize.transform.position.x, PlinkoPrize.transform.position.y, PlinkoPrize.transform.position.z);
-		wheelPrizeOriginalPos = new Vector3(WheelPrize.transform.position.x, WheelPrize.transform.position.y, WheelPrize.transform.position.z);
-		coinPrizeOriginalPos = new Vector3(CoinPrize.transform.position.x, CoinPrize.transform.position.y, CoinPrize.transform.position.z);
+		// Store prizes original position and rotation
+		plinkoPrizeOriginalPos =  PlinkoPrize.transform.GetChild(0).transform.position;
+		wheelPrizeOriginalPos = WheelPrize.transform.GetChild (0).transform.position;
+		coinPrizeOriginalPos = CoinPrize.transform.GetChild(0).transform.position;
+		plinkoPrizeOriginalRot =  PlinkoPrize.transform.GetChild(0).transform.rotation;
+		wheelPrizeOriginalRot = WheelPrize.transform.GetChild (0).transform.rotation;
+		coinPrizeOriginalRot = CoinPrize.transform.GetChild(0).transform.rotation;
 
 		ResetGame ();
 	}
@@ -162,13 +168,18 @@ public class CarnivalManager : MonoBehaviour {
 		wheelPoints = 0;
 		coinPoints = 0;
 
-		// Reset prizes positions
-		/*PlinkoPrize.transform.position = plinkoPrizeOriginalPos;
-		WheelPrize.transform.position = wheelPrizeOriginalPos;
-		CoinPrize.transform.position = coinPrizeOriginalPos;*/
-		PrefabUtility.ResetToPrefabState (PlinkoPrize);
-		PrefabUtility.ResetToPrefabState (WheelPrize);
-		PrefabUtility.ResetToPrefabState (CoinPrize);
+		// Reset prizes positions and rotation
+		PlinkoPrize.transform.GetChild(0).transform.position = plinkoPrizeOriginalPos;
+		WheelPrize.transform.GetChild(0).transform.position = wheelPrizeOriginalPos;
+		CoinPrize.transform.GetChild(0).transform.position = coinPrizeOriginalPos;
+		PlinkoPrize.transform.GetChild(0).transform.rotation = plinkoPrizeOriginalRot;
+		WheelPrize.transform.GetChild(0).transform.rotation = wheelPrizeOriginalRot;
+		CoinPrize.transform.GetChild(0).transform.rotation = coinPrizeOriginalRot;
+		/*
+		PlinkoPrize.GetComponent<Rigidbody>().MovePosition(plinkoPrizeOriginalPos);
+		WheelPrize.GetComponent<Rigidbody>().MovePosition(wheelPrizeOriginalPos);
+		CoinPrize.GetComponent<Rigidbody>().MovePosition(coinPrizeOriginalPos);
+		*/
 		// Reset Prizes
 		PlinkoPrize.SetActive(false);
 		WheelPrize.SetActive(false);
