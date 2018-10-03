@@ -51,12 +51,13 @@ public class CarnivalWheel : MonoBehaviour {
 
     private void CarnivalNeedle_OnSpokeHit(float points) {
 		if (CarnivalManager.Instance.IsPlaying ()) {
-			isWheelSpinning = false;
 			CarnivalManager.Instance.IncrementWheelScore (points);
 
 			ScoreHighlight sh = Instantiate (ScoreHighlighterPrefab, WheelOfFortune.transform.position + WheelOfFortune.transform.forward.normalized * .5f, 
 				                         Quaternion.LookRotation (-WheelOfFortune.transform.forward));
 			sh.SetPoints (points);
 		}
+
+		isWheelSpinning = false;
     }
 }
